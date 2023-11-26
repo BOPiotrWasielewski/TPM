@@ -1,4 +1,4 @@
-#include "Panel.h"
+#include "headers/Panel.h"
 
 int main() {
     Panel panel = Panel("Test");

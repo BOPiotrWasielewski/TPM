@@ -18,10 +18,10 @@ project(tpm)
 set(CMAKE_CXX_STANDARD 23)
 
 set(SOURCE_FILES src/main.cpp
-        src/Panel.cpp
-        src/Panel.h
-        src/Passwords.cpp
-        src/Passwords.h
+        src/classes/Panel.cpp
+        src/headers/Panel.h
+        src/classes/Passwords.cpp
+        src/headers/Passwords.h
 )
 
 add_executable(tpm ${SOURCE_FILES})

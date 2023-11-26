@@ -7,6 +7,7 @@
 
 #include <cstdlib>
 #include <cstdio>
+#include <string>
 #include <ftxui/component/screen_interactive.hpp>
 #include <ftxui/component/component.hpp>
 #include <ftxui/dom/elements.hpp>
@@ -20,9 +21,9 @@ using namespace ftxui;
 class Panel {
 private:
     char* title;
+    Passwords passwords;
 public:
-    Panel(char* title);
-    static void clear();
+    explicit Panel(char* title);
     void render();
 };
 
