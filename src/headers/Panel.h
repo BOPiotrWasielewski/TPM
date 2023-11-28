@@ -11,7 +11,8 @@
 #include <ftxui/component/screen_interactive.hpp>
 #include <ftxui/component/component.hpp>
 #include <ftxui/dom/elements.hpp>
-#include "Passwords.h"
+#include "PasswordManager.h"
+#include "Files.h"
 
 #if _WIN32 || _WIN64
     #include <windows.h>
@@ -21,7 +22,8 @@ using namespace ftxui;
 class Panel {
 private:
     char* title;
-    Passwords passwords;
+    PasswordManager manager;
+    Files filesystem;
 public:
     explicit Panel(char* title);
     void render();
