@@ -11,10 +11,10 @@
 
 struct SinglePassword {
     int id{};
-    char* name{};
-    char* username{};
-    char* url{};
-    char* password{};
+    std::string name{};
+    std::string username{};
+    std::string url{};
+    std::string password{};
 };
 
 class PasswordManager {

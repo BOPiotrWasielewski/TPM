@@ -18,7 +18,12 @@ Panel::Panel(char *title) {
 void Panel::render() {
     ScreenInteractive _screen = ScreenInteractive::Fullscreen();
 
-    this->manager.Add({.id =  1, .name =  "name 1", .username =  "test 123", .url =  "https://google.com", .password =  "abc123"});
+    std::vector<SinglePassword> passwords = this->filesystem.GetPasswordsFromFile();
+    if(!passwords.empty()){
+        for(const SinglePassword& pass : passwords){
+            this->manager.Add(pass);
+        }
+    }
 
     std::string t = "abc";
 

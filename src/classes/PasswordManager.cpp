@@ -24,7 +24,6 @@ std::shared_ptr<ftxui::ComponentBase> PasswordManager::GetListComponent(int i, c
 
     SinglePassword pass = this->passwords[i];
 
-    // ftxui::Button(pass.name, [=]{test(pass.name);})
     auto open = ftxui::Button("Więcej", [=]{test(pass.name);}, ftxui::ButtonOption::Ascii());
     return ftxui::Renderer(open, [=]{
         return ftxui::hbox({
