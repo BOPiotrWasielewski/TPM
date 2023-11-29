@@ -2,6 +2,6 @@
 
 int main() {
     Panel panel = Panel("TPM - Terminal PasswordManager Manager");
-    panel.render();
+    panel.draw();
     return 0;
 }

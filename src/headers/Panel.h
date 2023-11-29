@@ -8,15 +8,12 @@
 #include <cstdlib>
 #include <cstdio>
 #include <string>
+#include <windows.h>
 #include <ftxui/component/screen_interactive.hpp>
 #include <ftxui/component/component.hpp>
 #include <ftxui/dom/elements.hpp>
 #include "PasswordManager.h"
 #include "Files.h"
-
-#if _WIN32 || _WIN64
-    #include <windows.h>
-#endif
 
 using namespace ftxui;
 class Panel {
@@ -24,9 +21,15 @@ private:
     char* title;
     PasswordManager manager;
     Files filesystem;
+
+    SinglePassword selected_passwd;
+
+    Component render(const std::function<void(SinglePassword)> &update_current_passwd);
+    std::shared_ptr<ComponentBase> GetPasswordList(const std::function<void(SinglePassword)> &update_current_passwd);
+    std::shared_ptr<ComponentBase> GetDetailsView();
 public:
     explicit Panel(char* title);
-    void render();
+    void draw();
 };
 
 

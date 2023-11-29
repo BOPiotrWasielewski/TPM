@@ -8,25 +8,26 @@
 #include <vector>
 #include <string>
 #include <ftxui/component/component.hpp>
+#include "Encrypt.h"
 
 struct SinglePassword {
     int id{};
     std::string name{};
     std::string username{};
     std::string url{};
-    std::string password{};
+    Encrypt password;
 };
 
 class PasswordManager {
 private:
     std::vector<SinglePassword> passwords;
-    std::shared_ptr<ftxui::ComponentBase> GetListComponent(int i, const std::function<void(std::string)>& test);
 public:
     PasswordManager();
     void Add(SinglePassword object);
-    SinglePassword Get(int i);
+    SinglePassword Get(int cid);
     bool IsEmpty();
-    std::shared_ptr<ftxui::ComponentBase> GetPasswordList(const std::function<void(std::string)>& test);
+    int size();
+    std::shared_ptr<ftxui::ComponentBase> GetListComponent(int i, const std::function<void(SinglePassword)> &update_current_passwd);
 };
 
 #endif //TPM_PASSWORDMANAGER_H

@@ -15,12 +15,14 @@ std::vector<SinglePassword> Files::GetPasswordsFromFile() {
             std::vector<SinglePassword> passwords;
             json _json = json::parse(file_data);
             for(json inner : _json["passwords"]){
+                Encrypt encrypt;
+                encrypt.SetEncrypted(inner.value("password", ""));
                 SinglePassword pass = {
                     .id = inner.value("id", 0),
                     .name = inner.value("name", ""),
                     .username = inner.value("username", ""),
                     .url = inner.value("url", ""),
-                    .password = inner.value("password", ""),
+                    .password = encrypt,
                 };
                 passwords.push_back(pass);
             }
