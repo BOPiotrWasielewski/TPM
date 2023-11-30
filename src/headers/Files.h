@@ -10,6 +10,7 @@
 #include <filesystem>
 #include <fstream>
 #include <vector>
+#include <codecvt>
 #include <nlohmann/json.hpp>
 #include "PasswordManager.h"
 

@@ -12,23 +12,33 @@
 #include <ftxui/component/screen_interactive.hpp>
 #include <ftxui/component/component.hpp>
 #include <ftxui/dom/elements.hpp>
+#include <clipboardxx.hpp>
 #include "PasswordManager.h"
 #include "Files.h"
 
 using namespace ftxui;
 class Panel {
 private:
-    char* title;
-    PasswordManager manager;
+    int shift = 0;
+    std::vector<SinglePassword> manager;
+    std::vector<Component> passList;
     Files filesystem;
 
     SinglePassword selected_passwd;
+    clipboardxx::clipboard clipboard;
+    bool show_add_modal = false;
 
-    Component render(const std::function<void(SinglePassword)> &update_current_passwd);
-    std::shared_ptr<ComponentBase> GetPasswordList(const std::function<void(SinglePassword)> &update_current_passwd);
+    SinglePassword pass_to_add;
+
+    Component render(const std::function<void(SinglePassword)> &update_current_details, const std::function<void()> &add_new_password);
+    std::shared_ptr<ComponentBase> GetPasswordListView(const std::function<void(SinglePassword)> &update_current_details);
     std::shared_ptr<ComponentBase> GetDetailsView();
+    std::shared_ptr<ComponentBase> GetControlView();
+    std::shared_ptr<ComponentBase> GetAddNewPasswordModal(const std::function<void()> &hide_modal, const std::function<void()> &add_new_password);
+    bool regenerate_pass_list(const std::function<void(SinglePassword)> &update_current_details);
+    static std::shared_ptr<ftxui::ComponentBase> GetListComponent(const SinglePassword &pass, const std::function<void(SinglePassword)> &update_current_details);
 public:
-    explicit Panel(char* title);
+    explicit Panel(std::string title);
     void draw();
 };
 

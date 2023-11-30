@@ -6,13 +6,13 @@
 #define TPM_ENCRYPT_H
 
 #include <string>
+#include "base64.h"
 
 class Encrypt {
 private:
     std::string original;
     std::string encrypted;
     std::string crypto_key;
-    std::string EncryptPassword(const std::string& value);
 public:
     Encrypt(std::string crypto_key = "5JMMLlOpjZ");
     void SetOriginal(const std::string& original);

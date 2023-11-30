@@ -15,19 +15,7 @@ struct SinglePassword {
     std::string name{};
     std::string username{};
     std::string url{};
-    Encrypt password;
-};
-
-class PasswordManager {
-private:
-    std::vector<SinglePassword> passwords;
-public:
-    PasswordManager();
-    void Add(SinglePassword object);
-    SinglePassword Get(int cid);
-    bool IsEmpty();
-    int size();
-    std::shared_ptr<ftxui::ComponentBase> GetListComponent(int i, const std::function<void(SinglePassword)> &update_current_passwd);
+    std::string password;
 };
 
 #endif //TPM_PASSWORDMANAGER_H

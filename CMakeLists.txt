@@ -23,6 +23,16 @@ if(NOT json_POPULATED)
     add_subdirectory(${json_SOURCE_DIR} ${json_BINARY_DIR} EXCLUDE_FROM_ALL)
 endif()
 
+FetchContent_Declare(clip
+        GIT_REPOSITORY https://github.com/Arian8j2/ClipboardXX
+        GIT_TAG v0.5
+)
+FetchContent_GetProperties(clip)
+if(NOT clip_POPULATED)
+    FetchContent_Populate(clip)
+    add_subdirectory(${clip_SOURCE_DIR} ${clip_BINARY_DIR} EXCLUDE_FROM_ALL)
+endif()
+
 project(tpm)
 
 set(CMAKE_CXX_STANDARD 23)
@@ -32,12 +42,12 @@ set(CMAKE_EXE_LINKER_FLAGS "-static")
 set(SOURCE_FILES src/main.cpp
         src/classes/Panel.cpp
         src/headers/Panel.h
-        src/classes/PasswordManager.cpp
         src/headers/PasswordManager.h
         src/classes/Files.cpp
         src/headers/Files.h
         src/classes/Encrypt.cpp
         src/headers/Encrypt.h
+        src/headers/base64.h
 )
 
 add_executable(tpm ${SOURCE_FILES})
@@ -49,4 +59,7 @@ target_link_libraries(tpm
 )
 target_link_libraries(tpm
     PRIVATE nlohmann_json::nlohmann_json
+)
+target_link_libraries(tpm
+    PRIVATE ClipboardXX
 )
